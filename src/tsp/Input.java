@@ -11,12 +11,14 @@ import graph.*;
 
 public class Input extends DefaultHandler{
 
-	int finalinst, antcolsize, plevel;
+	float finalinst,plevel;
+	int antcolsize;
 	int nbnodes, nestnode;
 	Node[] nodesArray;
-	int nodeID;
+	private int nodeID, targetnodeID;
 	Move move;
 	Evaporation evap;
+	
 	
 	@Override
     public void startDocument() throws SAXException
@@ -44,14 +46,14 @@ public class Input extends DefaultHandler{
 						
 				for(i = 0; i < attributesSize; i++) {
 					if(attributes.getLocalName(i).equals("finalinst")) {
-						this.finalinst = Integer.parseInt(attributes.getValue(i));
-						
+						this.finalinst = Float.parseFloat(attributes.getValue(i));
+		
 					}else if(attributes.getLocalName(i).equals("antcolsize")) {
 						this.antcolsize = Integer.parseInt(attributes.getValue(i));
 								
 					}else if(attributes.getLocalName(i).equals("plevel")) {
-						this.plevel = Integer.parseInt(attributes.getValue(i));
-								
+						this.plevel = Float.parseFloat(attributes.getValue(i));
+						
 					}
 				}
 				break;
@@ -61,41 +63,45 @@ public class Input extends DefaultHandler{
 					if(attributes.getLocalName(i).equals("nbnodes")) {
 						this.nbnodes = Integer.parseInt(attributes.getValue(i));
 						nodesArray = new Node[this.nbnodes];
+						for(int j=0; j<this.nbnodes; j++) {
+							Node new_node = new Node(j+1);
+							nodesArray[j] = new_node;
+						}
 						
 					}else if(attributes.getLocalName(i).equals("nestnode")) {
 						this.nestnode = Integer.parseInt(attributes.getValue(i));
 					
-					}
-				}
+					} 
+				};
 				break;
 				
 			case "node":
-				this.nodeID = Integer.parseInt(attributes.getValue(0));
-				this.nodesArray[this.nodeID-1].nodeidx = this.nodeID;
-								
+				this.nodeID = Integer.parseInt(attributes.getValue(0));			
 				break;
 				
 			case "weight":
-				int targetnodeID = Integer.parseInt(attributes.getValue(0));
-				Weight Myneighbor = new Weight(targetnodeID, 0);
+				this.targetnodeID = Integer.parseInt(attributes.getValue(0));
+				Weight Myneighbor = new Weight(this.targetnodeID, 0);
 				Weight Yourneighbor = new Weight(this.nodeID, 0);
 				
-				this.nodesArray[this.nodeID-1].listNeighbor.add(Myneighbor);
-				this.nodesArray[targetnodeID-1].listNeighbor.add(Yourneighbor);
 				
+				
+				this.nodesArray[this.nodeID-1].listNeighbor.add(Myneighbor);
+				this.nodesArray[this.targetnodeID-1].listNeighbor.add(Yourneighbor);
+
 				break;
 				
 			case "move":
 				
 				for(i = 0; i < attributesSize; i++) {
 					if(attributes.getLocalName(i).equals("alpha")) {
-						_alpha = Integer.parseInt(attributes.getValue(i));
+						_alpha = Float.parseFloat(attributes.getValue(i));
 						
 					}else if(attributes.getLocalName(i).equals("beta")) {
-						_beta = Integer.parseInt(attributes.getValue(i));
+						_beta = Float.parseFloat(attributes.getValue(i));
 					
 					}else if(attributes.getLocalName(i).equals("delta")) {
-						_delta= Integer.parseInt(attributes.getValue(i));
+						_delta= Float.parseFloat(attributes.getValue(i));
 					
 					}
 				}	
@@ -105,10 +111,10 @@ public class Input extends DefaultHandler{
 			case "evaporation":
 				for(i = 0; i < attributesSize; i++) {
 					if(attributes.getLocalName(i).equals("eta")) {
-						_eta = Integer.parseInt(attributes.getValue(i));
+						_eta = Float.parseFloat(attributes.getValue(i));
 						
 					}else if(attributes.getLocalName(i).equals("rho")) {
-						_rho = Integer.parseInt(attributes.getValue(i));
+						_rho = Float.parseFloat(attributes.getValue(i));
 					
 					}
 				}
@@ -126,14 +132,13 @@ public class Input extends DefaultHandler{
 	
 
 	@Override
-	public void characters(char ch[], int start, int length) throws SAXException {
+	public void characters(char[] ch, int start, int length) throws SAXException {
 
         String weightSring = new String(ch,start,length);
         int weightEdge = Integer.parseInt(weightSring);
-        int neighborID = this.nodesArray[this.nodeID-1].listNeighbor.getLast().getID();
         
         this.nodesArray[this.nodeID-1].listNeighbor.getLast().setWeight(weightEdge);
-        this.nodesArray[neighborID-1].listNeighbor.getLast().setWeight(weightEdge);
+        this.nodesArray[this.targetnodeID-1].listNeighbor.getLast().setWeight(weightEdge);
         
 	   }
 

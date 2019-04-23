@@ -1,8 +1,13 @@
 package events;
 
+import java.util.ListIterator;
+import java.util.stream.*;
+
+import graph.*;
+
 public class Move extends Events{
 
-	public float alpha, beta, delta;
+	private float alpha, beta, delta;
 	
 	public Move(int timeinstant, float _alpha, float _beta, float _delta) {
 		super(timeinstant);
@@ -12,5 +17,8 @@ public class Move extends Events{
 		this.delta = _delta;
 		
 	}
+	
+	
+	
 	
 }

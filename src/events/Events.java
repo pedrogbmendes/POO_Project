@@ -1,5 +1,7 @@
 package events;
 
+import graph.*;
+
 public abstract class Events {
 
 	int timestamp;

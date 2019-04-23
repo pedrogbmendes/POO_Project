@@ -9,8 +9,7 @@ import org.xml.sax.SAXException;
 import java.io.File;
 import java.io.IOException;
 
-
-import graph.*;
+import graph.Graph;
 
 public class Main {
 
@@ -23,8 +22,8 @@ public class Main {
             System.exit(1);
         }
 		
-		String filename = args[0];*/
-		String filename = "data.xml";
+		String filename = args[0];*/	
+		String filename = "data1.xml";
 				
 		SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
 		SAXParser saxParser = null;
@@ -41,11 +40,12 @@ public class Main {
 			System.exit(1);
 			
 	    } catch (IOException er) {
+	    	er.printStackTrace();
 	    	System.out.println("ERROR: Input file does not exist");
 			System.exit(1);
 			
 	    }
-			
+		
 		Graph graph = new Graph(inInfo.nbnodes, inInfo.nestnode, inInfo.nodesArray);
 		System.out.println(graph.toString());
 		
