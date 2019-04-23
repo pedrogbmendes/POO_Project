@@ -5,6 +5,7 @@ package tsp;
 import org.xml.sax.*;
 import org.xml.sax.helpers.*;
 
+import colony.UpdateMoveAnt;
 import events.*;
 import graph.*;
 
@@ -16,9 +17,9 @@ public class Input extends DefaultHandler{
 	int nbnodes, nestnode;
 	Node[] nodesArray;
 	private int nodeID, targetnodeID;
-	Move move;
+	UpdateMoveAnt move;
 	Evaporation evap;
-	
+	int W = 0;
 	
 	@Override
     public void startDocument() throws SAXException
@@ -105,7 +106,7 @@ public class Input extends DefaultHandler{
 					
 					}
 				}	
-				this.move = new Move(0, _alpha, _beta, _delta);
+				this.move = new UpdateMoveAnt( _alpha, _beta, _delta);
 				break;
 		
 			case "evaporation":
@@ -139,6 +140,7 @@ public class Input extends DefaultHandler{
         
         this.nodesArray[this.nodeID-1].listNeighbor.getLast().setWeight(weightEdge);
         this.nodesArray[this.targetnodeID-1].listNeighbor.getLast().setWeight(weightEdge);
+        this.W += weightEdge;
         
 	   }
 

@@ -1,11 +1,9 @@
-package ant;
+package colony;
 
 import java.util.LinkedList;
-import java.util.ListIterator;
 import java.util.Random;
-import java.util.stream.DoubleStream;
 
-import graph.Weight;
+//import graph.Weight;
 import tsp.GraphInterface;
 
 public class UpdateMoveAnt{
@@ -43,7 +41,7 @@ public class UpdateMoveAnt{
 	}
 	
 	
-	private int calculateNextNode(Ant ant, Graph graph){
+	private int calculateNextNode(Ant ant, GraphInterface graph){
 	
 		LinkedList<Double> c_ij = new LinkedList<Double>();
 		LinkedList<Integer> notVisitNeighbor = new LinkedList<Integer>();
@@ -51,18 +49,19 @@ public class UpdateMoveAnt{
 		int nextNode=1, i, a_ij, neighborID;
 		double c_i=0, f_ij;
 		
-		ListIterator<Weight> iter;
 		Random rand = new Random();
 		
-		for(iter = listNeighbor.listIterator(0); iter.hasNext(); ) {
-			neighborID = iter.next().targetnode
+		int numberNeighbor = graph.numberNeighbor(ant.actualNode);
+		
+		for(i=0; i<numberNeighbor; i++  ) {
+			neighborID = graph.getNeighborID(ant.actualNode, i);
 					
 			if(!ant.path.contains(neighborID)){
-				f_ij = iter.next().getPheromone(ant.actualNode,neighborID);
-				a_ij = iter.next().getWeight(ant.actualNode,neighborID); 
+				f_ij = graph.getPheromone(ant.actualNode,neighborID);
+				a_ij = graph.getWeight(ant.actualNode,neighborID); 
 				
-				c_ij.add( (this.alpha + f_ij) / (this.beta + iter.next().weight) );
-				notVisitNeighbor.add(iter.next().targetnode);
+				c_ij.add( (this.alpha + f_ij) / (this.beta + a_ij) );
+				notVisitNeighbor.add(neighborID);
 				
 			}
 		}
@@ -70,7 +69,7 @@ public class UpdateMoveAnt{
 		if(c_ij.isEmpty()) {
 			//all neighbors were visited
 			int randNumberint = rand.nextInt(numberNeighbor);
-			nextNode = listNeighbor.get(randNumberint).targetnode;
+			nextNode = graph.getListNeighbor(ant.actualNode).get(randNumberint).targetnode;
 			
 			
 		}else {

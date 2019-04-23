@@ -12,12 +12,13 @@ public class Graph implements GraphInterface{
 	public int nbnodes;
 	public int nestnode;
 	public Node[] arrayNodes;
+	public int W;
 	
-	public Graph(int numberNodes, int nest, Node[] vnode) {
+	public Graph(int numberNodes, int nest, Node[] vnode, int W) {
 		this.nbnodes = numberNodes;
 		this.nestnode = nest;
 		this.arrayNodes = vnode;
-		
+		this.W = W;
 	}
 	
 	
@@ -57,6 +58,10 @@ public class Graph implements GraphInterface{
 						
 	}
 	
+	public int getTotalWeight() {
+		return this.W;
+	}
+	
 	public int getWeight(int myID, int neighborID) {
 		
 		ListIterator<Weight> iter = this.arrayNodes[myID].listNeighbor.listIterator(0);
@@ -72,12 +77,16 @@ public class Graph implements GraphInterface{
 	}
 	
 	public int numberNeighbor(int id) {
-		return arrayNodes[id-1].listNeighbor.size();
+		return this.arrayNodes[id-1].listNeighbor.size();
 		
 	}
 	
 	public LinkedList<Weight> getListNeighbor(int id) {
-		return arrayNodes[id-1].listNeighbor;
+		return this.arrayNodes[id-1].listNeighbor;
+	}
+	
+	public int getNeighborID(int id, int index) {
+		return this.arrayNodes[id-1].listNeighbor.get(index).targetnode;
 	}
 	
 	@Override

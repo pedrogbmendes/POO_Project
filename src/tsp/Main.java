@@ -46,7 +46,7 @@ public class Main {
 			
 	    }
 		
-		Graph graph = new Graph(inInfo.nbnodes, inInfo.nestnode, inInfo.nodesArray);
+		Graph graph = new Graph(inInfo.nbnodes, inInfo.nestnode, inInfo.nodesArray, inInfo.W);
 		System.out.println(graph.toString());
 		
 	}

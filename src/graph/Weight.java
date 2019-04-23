@@ -3,7 +3,7 @@ package graph;
 
 public class Weight{
 
-	int targetnode;
+	public int targetnode;
 	int weight;
 	float pheromone;
 	

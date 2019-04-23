@@ -1,4 +1,4 @@
-package ant;
+package colony;
 
 import java.util.LinkedList;
 
