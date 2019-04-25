@@ -1,34 +1,29 @@
 package colony;
 
-import tsp.GraphInterface;
 
-public class UpdateEvaporation {
+
+
+public class UpdateEvaporation{
 	
-	private float eta;
-	private float rho;
+	private double plevel, rho;
+
 	
-	public UpdateEvaporation(float eta, float rho) {
-		this.eta = eta;
+	
+	public UpdateEvaporation(double plevel, double rho) {
 		this.rho = rho;
+		this.plevel = plevel;
 	}
 	
-	public void decPheromone(GraphInterface graph, int node1, int node2) {
+	void decPheromone(GraphInterface graph, int edgeN1, int edgeN2) {
 		
-		float pheroVal = graph.getPheromone(node1, node2);
-		if(pheroVal != 0) {
-			if(pheroVal < this.rho) {
-				graph.setPheromone(node1, node2, 0);
-			}else {
-				graph.setPheromone(node1, node2, pheroVal-this.rho);
-			}
-		}
+		graph.decrementPheromone(edgeN1, edgeN2, this.rho);
 		
 	}
-	
+		
 	public void incPheromone(GraphInterface graph, Ant ant) {
 		
-		float incVal = (this.eta * graph.getTotalWeight()) / (ant.weightPath);
-		float pheroLevel;
+		double incVal = (this.plevel * graph.getTotalWeight()) / (ant.weightPath);
+		double pheroLevel;
 		
 		int node1, node2; 
 		
@@ -41,6 +36,10 @@ public class UpdateEvaporation {
 		}
 		
 	}
+	
+	
+	
+
 	
 	
 }

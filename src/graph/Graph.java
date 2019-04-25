@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.ListIterator;
 
-import tsp.GraphInterface;
+import colony.GraphInterface;
 
 
 public class Graph implements GraphInterface{
@@ -23,7 +23,7 @@ public class Graph implements GraphInterface{
 	
 	
 	
-	public void setPheromone(int myID, int neighborID, float phero) {
+	public void setPheromone(int myID, int neighborID, double phero) {
 		
 		ListIterator<Weight> iter = this.arrayNodes[myID].listNeighbor.listIterator(0);
 		
@@ -43,10 +43,10 @@ public class Graph implements GraphInterface{
 		}				
 	}
 	
-	public float getPheromone(int myID, int neighborID) {
+	public double getPheromone(int myID, int neighborID) {
 		
 		ListIterator<Weight> iter = this.arrayNodes[myID].listNeighbor.listIterator(0);
-		float phero = 0;
+		double phero = 0;
 		
 		while(iter.hasNext()) {
 			if(iter.next().getID() == neighborID) {
@@ -57,6 +57,20 @@ public class Graph implements GraphInterface{
 		return phero;
 						
 	}
+	
+	public void decrementPheromone(int myId, int neighborId, double dec) {
+		
+		double pheroVal = this.getPheromone(myId, neighborId);
+		if(pheroVal != 0) {
+			if(pheroVal < dec) {
+				this.setPheromone(myId, neighborId, 0);
+			}else {
+				this.setPheromone(myId, neighborId, pheroVal-dec);
+			}
+		}
+		
+	}
+	
 	
 	public int getTotalWeight() {
 		return this.W;

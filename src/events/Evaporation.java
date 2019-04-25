@@ -1,14 +1,21 @@
 package events;
 
+import simulation.Events;
+
 public class Evaporation extends Events{
 
-	public float eta, rho;
+	protected int edgeN1, edgeN2;
 	
-	public Evaporation(int timeinstant, float _eta, float _rho) {
+	public Evaporation(double timeinstant, int n1, int n2) {
 		super(timeinstant);
 		
-		this.eta =_eta;
-		this.rho = _rho;
+		this.edgeN1 = n1;
+		this.edgeN2 = n2;
+		
+	}
+	
+	
+	public void TriggerEvent() {
 		
 	}
 	

@@ -5,7 +5,7 @@ public class Weight{
 
 	public int targetnode;
 	int weight;
-	float pheromone;
+	double pheromone;
 	
 	public Weight(int neighborID, int weight) {
 		this.targetnode = neighborID;
@@ -18,7 +18,7 @@ public class Weight{
 		
 	}
 	
-	public void setPheromone(float phero) {
+	public void setPheromone(double phero) {
 		this.pheromone = phero;
 		
 	}
@@ -36,7 +36,7 @@ public class Weight{
 		return this.weight;
 	}
 	
-	float getPheronome() {
+	double getPheronome() {
 		return this.pheromone;
 	}
 

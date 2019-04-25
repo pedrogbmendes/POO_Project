@@ -6,13 +6,8 @@ import java.util.Iterator;
 
 public class Node {
 	
-	public int nodeidx;
 	public LinkedList<Weight> listNeighbor = new LinkedList<Weight>();
 	
-	public Node(int id) {
-		this.nodeidx = id;
-	}
-
 	@Override
 	public String toString() {
 		Iterator<Weight> iter = this.listNeighbor.listIterator(0);
@@ -21,7 +16,7 @@ public class Node {
 			list += iter.next().toString();
 		}
 		
-		return "Node [nodeidx=" + nodeidx + ", listNeighbor=\n" + list  + "]\n";
+		return "Node [listNeighbor=\n" + list  + "]\n";
 	}
 	
 	

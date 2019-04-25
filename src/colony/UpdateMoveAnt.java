@@ -3,25 +3,24 @@ package colony;
 import java.util.LinkedList;
 import java.util.Random;
 
-//import graph.Weight;
-import tsp.GraphInterface;
 
 public class UpdateMoveAnt{
 
-	private float alpha, beta, delta;
+	private double alpha, beta;
+
 	
-	
-	public UpdateMoveAnt(float _alpha, float _beta, float _delta) {
+	public UpdateMoveAnt(double _alpha, double _beta) {
 		this.alpha = _alpha;
 		this.beta = _beta;
-		this.delta = _delta;
 		
 	}
 	
-	public int AntMove(Ant ant, GraphInterface graph) {
+	
+	int AntMove(Ant ant, GraphInterface graph) {
+		//returns the weight of the edge to traverse
 		
 		int nextNode = calculateNextNode(ant, graph);
-		
+		int weightEdge = graph.getWeight(ant.actualNode, nextNode);
 		
 		//verifies if the ant already pass on the newNode
 		if( ant.path.contains(nextNode) ) {
@@ -35,9 +34,13 @@ public class UpdateMoveAnt{
 								
 				ant.weightPath -= graph.getWeight(before, last);
 			}	
+			ant.updateAnt(nextNode);
+			
+		}else {
+			ant.updateAnt(nextNode, weightEdge);	
 		}
-				
-		return nextNode;
+		
+		return weightEdge;
 	}
 	
 	
@@ -100,11 +103,12 @@ public class UpdateMoveAnt{
 						nextNode = notVisitNeighbor.get(i);
 				}
 			}
-							
-			
 		}
 		
 		return nextNode;	
 	}
 		
+	
+
+	
 }

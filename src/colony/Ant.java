@@ -25,4 +25,9 @@ public class Ant {
 		
 	}
 	
+	public void updateAnt(int newNode){
+		
+		this.actualNode = newNode;
+	}
+	
 }

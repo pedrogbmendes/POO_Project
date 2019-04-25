@@ -1,24 +1,23 @@
 package events;
 
-import java.util.ListIterator;
-import java.util.stream.*;
-
-import graph.*;
+import simulation.Events;
+import colony.SimulationColony;
 
 public class Move extends Events{
 
-	private float alpha, beta, delta;
+	protected int ID;
 	
-	public Move(int timeinstant, float _alpha, float _beta, float _delta) {
+	
+	public Move(double timeinstant,int Id) {
 		super(timeinstant);
 		
-		this.alpha = _alpha;
-		this.beta = _beta;
-		this.delta = _delta;
-		
+		this.ID = Id;
 	}
 	
 	
-	
-	
+	public void TriggerEvent() {
+		Move(this.ID);
+		
+	}
+
 }

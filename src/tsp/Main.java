@@ -10,6 +10,9 @@ import java.io.File;
 import java.io.IOException;
 
 import graph.Graph;
+import colony.SimulationColony;
+
+
 
 public class Main {
 
@@ -48,9 +51,20 @@ public class Main {
 		
 		Graph graph = new Graph(inInfo.nbnodes, inInfo.nestnode, inInfo.nodesArray, inInfo.W);
 		System.out.println(graph.toString());
+	
+	
+		SimulationColony simulation = new SimulationColony(inInfo.finalinst, inInfo.alpha, inInfo.beta, inInfo.delta, inInfo.eta, inInfo.rho, inInfo.plevel, inInfo.antcolsize, inInfo.nestnode, graph);
 		
+		while(!simulation.verifyEnd()) {
+			
+		}
+	
+		
+		
+		
+		
+		
+	
 	}
-	
-	
 	
 }

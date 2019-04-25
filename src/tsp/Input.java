@@ -1,24 +1,23 @@
 package tsp;
 
 
-
 import org.xml.sax.*;
 import org.xml.sax.helpers.*;
 
 import colony.UpdateMoveAnt;
-import events.*;
-import graph.*;
+import colony.UpdateEvaporation;
+import graph.Node;
+import graph.Weight;
 
 
 public class Input extends DefaultHandler{
 
-	float finalinst,plevel;
+	double finalinst,plevel;
 	int antcolsize;
 	int nbnodes, nestnode;
 	Node[] nodesArray;
 	private int nodeID, targetnodeID;
-	UpdateMoveAnt move;
-	Evaporation evap;
+	double alpha, beta, delta, eta, rho;
 	int W = 0;
 	
 	@Override
@@ -39,7 +38,6 @@ public class Input extends DefaultHandler{
 				
 		int attributesSize = attributes.getLength();
 		int i;
-		float _alpha = 0, _beta = 0, _delta = 0, _eta = 0, _rho = 0;
 		
 		switch(tag) {
 			
@@ -47,13 +45,13 @@ public class Input extends DefaultHandler{
 						
 				for(i = 0; i < attributesSize; i++) {
 					if(attributes.getLocalName(i).equals("finalinst")) {
-						this.finalinst = Float.parseFloat(attributes.getValue(i));
+						this.finalinst = Double.parseDouble(attributes.getValue(i));
 		
 					}else if(attributes.getLocalName(i).equals("antcolsize")) {
 						this.antcolsize = Integer.parseInt(attributes.getValue(i));
 								
 					}else if(attributes.getLocalName(i).equals("plevel")) {
-						this.plevel = Float.parseFloat(attributes.getValue(i));
+						this.plevel = Double.parseDouble(attributes.getValue(i));
 						
 					}
 				}
@@ -65,7 +63,7 @@ public class Input extends DefaultHandler{
 						this.nbnodes = Integer.parseInt(attributes.getValue(i));
 						nodesArray = new Node[this.nbnodes];
 						for(int j=0; j<this.nbnodes; j++) {
-							Node new_node = new Node(j+1);
+							Node new_node = new Node();
 							nodesArray[j] = new_node;
 						}
 						
@@ -96,30 +94,28 @@ public class Input extends DefaultHandler{
 				
 				for(i = 0; i < attributesSize; i++) {
 					if(attributes.getLocalName(i).equals("alpha")) {
-						_alpha = Float.parseFloat(attributes.getValue(i));
+						this.alpha = Double.parseDouble(attributes.getValue(i));
 						
 					}else if(attributes.getLocalName(i).equals("beta")) {
-						_beta = Float.parseFloat(attributes.getValue(i));
+						this.beta = Double.parseDouble(attributes.getValue(i));
 					
 					}else if(attributes.getLocalName(i).equals("delta")) {
-						_delta= Float.parseFloat(attributes.getValue(i));
+						this.delta= Double.parseDouble(attributes.getValue(i));
 					
 					}
 				}	
-				this.move = new UpdateMoveAnt( _alpha, _beta, _delta);
 				break;
 		
 			case "evaporation":
 				for(i = 0; i < attributesSize; i++) {
 					if(attributes.getLocalName(i).equals("eta")) {
-						_eta = Float.parseFloat(attributes.getValue(i));
+						this.eta = Double.parseDouble(attributes.getValue(i));
 						
 					}else if(attributes.getLocalName(i).equals("rho")) {
-						_rho = Float.parseFloat(attributes.getValue(i));
+						this.rho = Double.parseDouble(attributes.getValue(i));
 					
 					}
 				}
-				this.evap = new Evaporation(0, _eta, _rho);
 				break;
 		}
 	}
