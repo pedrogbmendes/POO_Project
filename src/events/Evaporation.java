@@ -2,7 +2,7 @@ package events;
 
 import simulation.Events;
 
-public class Evaporation extends Events{
+public abstract class Evaporation extends Events{
 
 	protected int edgeN1, edgeN2;
 	
@@ -16,7 +16,9 @@ public class Evaporation extends Events{
 	
 	
 	public void TriggerEvent() {
-		
+		 EvaporationEvent();
 	}
 	
+	protected abstract void EvaporationEvent();
+
 }

@@ -56,9 +56,10 @@ public class Main {
 		SimulationColony simulation = new SimulationColony(inInfo.finalinst, inInfo.alpha, inInfo.beta, inInfo.delta, inInfo.eta, inInfo.rho, inInfo.plevel, inInfo.antcolsize, inInfo.nestnode, graph);
 		
 		while(!simulation.verifyEnd()) {
+			simulation.nextStep();
 			
 		}
-	
+		System.out.println("END!!!");
 		
 		
 		

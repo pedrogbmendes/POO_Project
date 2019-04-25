@@ -1,12 +1,11 @@
 package events;
 
 import simulation.Events;
-import colony.SimulationColony;
 
-public class Move extends Events{
+
+public abstract class Move extends Events{
 
 	protected int ID;
-	
 	
 	public Move(double timeinstant,int Id) {
 		super(timeinstant);
@@ -16,8 +15,9 @@ public class Move extends Events{
 	
 	
 	public void TriggerEvent() {
-		Move(this.ID);
-		
+		MoveEvent();
 	}
 
+	protected abstract void MoveEvent();
+	
 }

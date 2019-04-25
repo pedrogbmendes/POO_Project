@@ -21,23 +21,25 @@ public class Graph implements GraphInterface{
 		this.W = W;
 	}
 	
-	
-	
+		
 	public void setPheromone(int myID, int neighborID, double phero) {
 		
-		ListIterator<Weight> iter = this.arrayNodes[myID].listNeighbor.listIterator(0);
+		ListIterator<Weight> iter = this.arrayNodes[myID-1].listNeighbor.listIterator(0);
+		Weight nodeWeight;
 		
 		while(iter.hasNext()) {
-			if(iter.next().getID() == neighborID) {
-				iter.next().setPheromone(phero);
+			nodeWeight = iter.next();
+			if(nodeWeight.getID() == neighborID) {
+				nodeWeight.setPheromone(phero);
 				break;
 			}
 		}
 		
-		iter = this.arrayNodes[neighborID].listNeighbor.listIterator(0);
+		iter = this.arrayNodes[neighborID-1].listNeighbor.listIterator(0);
 		while(iter.hasNext()) {
-			if(iter.next().getID() == myID) {
-				iter.next().setPheromone(phero);
+			nodeWeight = iter.next();
+			if(nodeWeight.getID() == myID) {
+				nodeWeight.setPheromone(phero);
 				break;
 			}
 		}				
@@ -45,15 +47,19 @@ public class Graph implements GraphInterface{
 	
 	public double getPheromone(int myID, int neighborID) {
 		
-		ListIterator<Weight> iter = this.arrayNodes[myID].listNeighbor.listIterator(0);
+		ListIterator<Weight> iter = this.arrayNodes[myID-1].listNeighbor.listIterator(0);
 		double phero = 0;
-		
+		Weight nodeWeight;
+
 		while(iter.hasNext()) {
-			if(iter.next().getID() == neighborID) {
-				phero = iter.next().getPheronome();
+			nodeWeight = iter.next();
+
+			if(nodeWeight.getID() == neighborID) {
+				phero = nodeWeight.getPheronome();
+				break;
 			}
 		}
-		
+
 		return phero;
 						
 	}
@@ -78,12 +84,14 @@ public class Graph implements GraphInterface{
 	
 	public int getWeight(int myID, int neighborID) {
 		
-		ListIterator<Weight> iter = this.arrayNodes[myID].listNeighbor.listIterator(0);
+		ListIterator<Weight> iter = this.arrayNodes[myID-1].listNeighbor.listIterator(0);
 		int weight_ = 0;
+		Weight nodeWeight;
 		
 		while(iter.hasNext()) {
-			if(iter.next().getID() == neighborID) {
-				weight_ = iter.next().getWeight();
+			nodeWeight = iter.next();
+			if(nodeWeight.getID() == neighborID) {
+				weight_ = nodeWeight.getWeight();
 			}
 		}		
 		return weight_;

@@ -57,6 +57,7 @@ public class UpdateMoveAnt{
 		int numberNeighbor = graph.numberNeighbor(ant.actualNode);
 		
 		for(i=0; i<numberNeighbor; i++  ) {
+			//calculate the probabilities of moving to neighbors not visited
 			neighborID = graph.getNeighborID(ant.actualNode, i);
 					
 			if(!ant.path.contains(neighborID)){
@@ -78,29 +79,40 @@ public class UpdateMoveAnt{
 		}else {
 			//there are neighbor nodes that were not visit yet
 			Double[] arrayProb = new Double[c_ij.size()];
-			Double[] intervalProb = new Double[c_ij.size()-1];
+			
 					
 			for(Double d : c_ij)
 				c_i += d;
 			
 			int size = c_ij.size();
-			
-			for(i = 0; i < size; i++)
-				arrayProb[i] = c_ij.get(i) / c_i;
-
-			
-			double randNumber = rand.nextDouble();
-			
-			intervalProb[0] = arrayProb[0];
-			if(randNumber <= intervalProb[0]) {
+			if(size == 1) {
 				nextNode = notVisitNeighbor.get(0);
 			}else {
-				for(i = 1; i < size; i++) {
+				for(i = 0; i < size; i++)
+					arrayProb[i] = c_ij.get(i) / c_i;
+	
 				
-					intervalProb[i] = intervalProb[i-1] + arrayProb[i];
+				double randNumber = rand.nextDouble();
 				
-					if(randNumber <= intervalProb[i])
-						nextNode = notVisitNeighbor.get(i);
+				
+				Double[] intervalProb = new Double[c_ij.size()-1];
+				
+				intervalProb[0] = arrayProb[0];
+				if(randNumber <= intervalProb[0]) {
+					nextNode = notVisitNeighbor.get(0);
+				}else {
+					for(i = 1; i < size-1; i++) {
+					
+						intervalProb[i] = intervalProb[i-1] + arrayProb[i];
+					
+						if(randNumber <= intervalProb[i]){
+							nextNode = notVisitNeighbor.get(i);
+							return nextNode;
+						}
+					}
+					
+					nextNode = notVisitNeighbor.get(size-1);
+					
 				}
 			}
 		}

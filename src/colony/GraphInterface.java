@@ -14,5 +14,6 @@ public interface GraphInterface {
 	LinkedList<Weight> getListNeighbor(int id);
 	int getNeighborID(int id, int index);
 	int getTotalWeight();
+	String toString();
 	
 }

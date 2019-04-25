@@ -4,8 +4,6 @@ package tsp;
 import org.xml.sax.*;
 import org.xml.sax.helpers.*;
 
-import colony.UpdateMoveAnt;
-import colony.UpdateEvaporation;
 import graph.Node;
 import graph.Weight;
 
