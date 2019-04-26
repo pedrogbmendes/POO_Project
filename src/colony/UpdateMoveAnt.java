@@ -23,18 +23,25 @@ public class UpdateMoveAnt{
 		int weightEdge = graph.getWeight(ant.actualNode, nextNode);
 		
 		//verifies if the ant already pass on the newNode
-		if( ant.path.contains(nextNode) ) {
-			int index = ant.path.indexOf(nextNode);
-			int size = ant.path.size();
-			int last, before;
-			
-			for(int i=size-1; i>index; i--) {
-				last = ant.path.pollLast();
-				before = ant.path.getLast();
-								
-				ant.weightPath -= graph.getWeight(before, last);
-			}	
-			ant.updateAnt(nextNode);
+		if( ant.path.contains(nextNode)) {
+			if(nextNode == graph.getNestNode() && ant.path.size() == graph.getNumberNodes()) {
+				//hamiltonian cycle complete
+				ant.updateAnt(nextNode, weightEdge);;
+				
+			}else {
+				//node is visit again and the Hamiltonian cycle is nor complete
+				int index = ant.path.indexOf(nextNode);
+				int size = ant.path.size();
+				int last, before;
+				
+				for(int i=size-1; i>index; i--) {
+					last = ant.path.pollLast();
+					before = ant.path.getLast();
+									
+					ant.weightPath -= graph.getWeight(before, last);
+				}	
+				ant.updateAnt(nextNode);
+			}
 			
 		}else {
 			ant.updateAnt(nextNode, weightEdge);	
@@ -120,7 +127,5 @@ public class UpdateMoveAnt{
 		return nextNode;	
 	}
 		
-	
-
 	
 }

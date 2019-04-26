@@ -26,7 +26,7 @@ public class Main {
         }
 		
 		String filename = args[0];*/	
-		String filename = "data1.xml";
+		String filename = "data.xml";
 				
 		SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
 		SAXParser saxParser = null;
@@ -51,21 +51,31 @@ public class Main {
 		
 		Graph graph = new Graph(inInfo.nbnodes, inInfo.nestnode, inInfo.nodesArray, inInfo.W);
 		System.out.println(graph.toString());
+		if(verifySolution(graph)) {
 	
-	
-		SimulationColony simulation = new SimulationColony(inInfo.finalinst, inInfo.alpha, inInfo.beta, inInfo.delta, inInfo.eta, inInfo.rho, inInfo.plevel, inInfo.antcolsize, inInfo.nestnode, graph);
+			SimulationColony simulation = new SimulationColony(inInfo.finalinst, inInfo.alpha, inInfo.beta, inInfo.delta, inInfo.eta, inInfo.rho, inInfo.plevel, inInfo.antcolsize, inInfo.nestnode, graph);
 		
-		while(!simulation.verifyEnd()) {
-			simulation.nextStep();
+			while(!simulation.verifyEnd()) {
+				simulation.nextStep();
 			
+			}
+		}else {
+			System.out.println("It's impossible to solve the problem");
 		}
 		System.out.println("END!!!");
 		
-		
-		
-		
-		
+	}
 	
+	
+	private static boolean verifySolution(Graph graph) {
+		
+		
+		for(int i=0; i<graph.nbnodes;i++) {
+			if(graph.arrayNodes[i].listNeighbor.size() == 1) {
+				return false;
+			}
+		}
+		return true;
 	}
 	
 }

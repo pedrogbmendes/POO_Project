@@ -98,19 +98,31 @@ public class Graph implements GraphInterface{
 						
 	}
 	
+	
 	public int numberNeighbor(int id) {
 		return this.arrayNodes[id-1].listNeighbor.size();
 		
 	}
 	
+	
 	public LinkedList<Weight> getListNeighbor(int id) {
 		return this.arrayNodes[id-1].listNeighbor;
 	}
+	
 	
 	public int getNeighborID(int id, int index) {
 		return this.arrayNodes[id-1].listNeighbor.get(index).targetnode;
 	}
 	
+	
+	public int getNumberNodes() {
+		return this.nbnodes;
+	}
+	
+	
+	public int getNestNode() {
+		return this.nestnode;
+	}
 	@Override
 	public String toString() {
 		return "Graph [nbnodes=" + nbnodes + ", nestnode=" + nestnode + ", arrayNodes=\n" + Arrays.deepToString(arrayNodes)+ "]";

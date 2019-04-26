@@ -31,7 +31,7 @@ public abstract class Simulation {
 	
 	public boolean verifyEnd() {
 		
-		if(this.currentTime >= this.simulationTime) {
+		if(this.currentTime > this.simulationTime) {
 			return true;
 		}
 		return false;

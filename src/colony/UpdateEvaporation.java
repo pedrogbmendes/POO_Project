@@ -14,25 +14,32 @@ public class UpdateEvaporation{
 		this.plevel = plevel;
 	}
 	
-	void decPheromone(GraphInterface graph, int edgeN1, int edgeN2) {
+	double decPheromone(GraphInterface graph, int edgeN1, int edgeN2) {
 		
 		graph.decrementPheromone(edgeN1, edgeN2, this.rho);
+		return graph.getPheromone(edgeN1, edgeN2);
 		
 	}
 		
-	public void incPheromone(GraphInterface graph, Ant ant) {
+	
+	void incPheromone(Colony colony, int antID) {
 		
-		double incVal = (this.plevel * graph.getTotalWeight()) / (ant.weightPath);
+		double incVal = (this.plevel * colony.graph.getTotalWeight()) / (colony.AntColony[antID].weightPath);
 		double pheroLevel;
 		
 		int node1, node2; 
 		
-		for(int i=0 ; i < ant.path.size()-1; i++) {
-			node1 = ant.path.get(i);
-			node2 = ant.path.get(i+1);
-			pheroLevel = graph.getPheromone(node1,node2);
+		for(int i=0 ; i < colony.AntColony[antID].path.size()-1; i++) {
+			node1 = colony.AntColony[antID].path.get(i);
+			node2 = colony.AntColony[antID].path.get(i+1);
+			
+			if(colony.graph.getPheromone(node1, node2) == 0) {
+				colony.simColony.scheduleEvaporation(node1, node2);
+			}
+			
+			pheroLevel = colony.graph.getPheromone(node1,node2);
 
-			graph.setPheromone(node1, node2, pheroLevel + incVal);
+			colony.graph.setPheromone(node1, node2, pheroLevel + incVal);
 		}
 		
 	}
