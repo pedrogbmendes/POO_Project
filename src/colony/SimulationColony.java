@@ -45,7 +45,7 @@ public class SimulationColony extends Simulation {
 	void Move(int antID) {
 		
 		int weightEdge = this.calculateMove.AntMove(colony.AntColony[antID], colony.graph);
-		System.out.println(verifyHamiltonCycle(antID));
+		
 		if(verifyHamiltonCycle(antID)) {
 			hamiltonionCycle(antID);
 		}
@@ -55,8 +55,8 @@ public class SimulationColony extends Simulation {
 	
 	
 	private void scheduleMove(int antID, int weightEdge) {
-		this.addToPec(new MoveAnt(this.getCurrentTime()+1.0, antID, this.colony));
-		//this.addToPec(new MoveAnt(this.getCurrentTime()+expRandom(delta*weightEdge), antID, this.colony));
+		//this.addToPec(new MoveAnt(this.getCurrentTime()+1.0, antID, this.colony));
+		this.addToPec(new MoveAnt(this.getCurrentTime()+expRandom(delta*weightEdge), antID, this.colony));
 	
 	}
 
@@ -76,7 +76,7 @@ public class SimulationColony extends Simulation {
 	
 	
 	private void hamiltonionCycle(int antID) {
-		System.out.println(".jkksg,");
+
 		this.calculateEvaporation.incPheromone(this.colony, antID);
 		
 		if (!this.hamiltonCycle.isEmpty()) {
@@ -126,8 +126,8 @@ public class SimulationColony extends Simulation {
 	
 	
 	void scheduleEvaporation(int edgeN1, int edgeN2) {
-		this.addToPec(new EvaporationEdge(this.getCurrentTime()+1, edgeN1, edgeN2, this.colony));
-		//this.addToPec(new EvaporationEdge(this.getCurrentTime()+expRandom(eta), edgeN1, edgeN2, this.colony));
+		//this.addToPec(new EvaporationEdge(this.getCurrentTime()+1, edgeN1, edgeN2, this.colony));
+		this.addToPec(new EvaporationEdge(this.getCurrentTime()+expRandom(eta), edgeN1, edgeN2, this.colony));
 		
 	}
 	
@@ -139,10 +139,10 @@ public class SimulationColony extends Simulation {
 
 	@Override
 	public String toString() {
+		
 		if(!this.hamiltonCycle.isEmpty()){
 			String listInString = "{";
-			
-			
+					
 			for (int n : this.hamiltonCycle) {
 				listInString += n + ",";
 			}
@@ -151,6 +151,9 @@ public class SimulationColony extends Simulation {
 			return  listInString + "}";
 		}
 		return "";
+		
+		//int size =  this.hamiltonCycle.toString().length(); 
+		//return "{" + this.hamiltonCycle.toString().substring(1, size-1) + "}";
 	}
 	
 	

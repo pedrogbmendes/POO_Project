@@ -8,6 +8,13 @@ import graph.Node;
 import graph.Weight;
 
 
+/**
+ * Parser function
+ * <p>
+ * Reads the input file (.xml) and stores the information/parameters to construct the
+ * graph and the simulation
+ * 
+ */
 public class Input extends DefaultHandler{
 
 	double finalinst,plevel;
@@ -122,13 +129,12 @@ public class Input extends DefaultHandler{
 	@Override
     public void endElement(String uri, String localName, String tag) throws SAXException {
     	
-       
     }
 	
 
 	@Override
 	public void characters(char[] ch, int start, int length) throws SAXException {
-
+		//reads the weight and store the value in the correct place in the adjacency list
         String weightSring = new String(ch,start,length);
         int weightEdge = Integer.parseInt(weightSring);
         

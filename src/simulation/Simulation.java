@@ -1,5 +1,17 @@
 package simulation;
 
+/**
+ * 
+ * Abstract class where is define a Stochastic Simulation based on the 
+ * event occurence.
+ * The simulation has the current time and it's running during the simulation
+ * time (while there is events to run stored in the PEC).<p>
+ * 
+ * Gives the basic functioning to extend the simulation to a specific type.
+ * 
+ * @author Pedro Mendes, Rui Livramento, Francisco Costa
+ *
+ */
 public abstract class Simulation {
 
 	protected double currentTime;
@@ -7,6 +19,12 @@ public abstract class Simulation {
 	protected PEC pec = new PEC();
 	
 	
+	/**
+	 * Class constructor - 
+	 * 
+	 * 
+	 * @param simuTime Simulation Time
+	 */
 	public Simulation(double simuTime) {
 		
 		this.currentTime = 0.0;
