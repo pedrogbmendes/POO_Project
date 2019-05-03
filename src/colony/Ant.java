@@ -3,6 +3,10 @@ package colony;
 import java.util.LinkedList;
 
 
+/**
+ * @author pedro
+ *
+ */
 public class Ant {
 
 	int actualNode;
@@ -10,6 +14,9 @@ public class Ant {
 	int weightPath;
 	
 	
+	/**
+	 * @param nest
+	 */
 	public Ant(int nest) {
 		this.actualNode = nest;
 		this.path.add(nest);
@@ -17,6 +24,10 @@ public class Ant {
 	
 	}
 	
+	/**
+	 * @param newNode
+	 * @param addWeight
+	 */
 	public void updateAnt(int newNode, int addWeight){
 		
 		this.actualNode = newNode;

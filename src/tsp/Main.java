@@ -33,9 +33,10 @@ public class Main {
 
 	
 	/**
-	 * @param args Input Filename
+	 *  * Main function: Reads the input file creates the graph and runs the simulation.
 	 * 
-	 * Main function: Reads the input file creates the graph and runs the simulation.
+	 * @param args Input Filename
+	 * 	
 	 */
 	public static void main(String[] args) {
 		
