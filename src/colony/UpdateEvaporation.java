@@ -54,7 +54,8 @@ public class UpdateEvaporation{
 		for(int i=0 ; i < colony.AntColony[antID].path.size()-1; i++) {
 			node1 = colony.AntColony[antID].path.get(i);
 			node2 = colony.AntColony[antID].path.get(i+1);
-						
+				
+			//only adds a new event of evaporation if the pheromone level of the edge is 0
 			if(colony.graph.getPheromone(node1, node2) == 0) {
 				colony.simColony.scheduleEvaporation(node1, node2);
 			}
