@@ -65,7 +65,8 @@ public class SimulationColony extends Simulation {
 	 */
 	void addToPec(Events e) {
 		
-		this.pec.add(e);
+		if(e.getTimeEvent() < this.simulationTime)
+			this.pec.add(e);
 	}
 		
 	

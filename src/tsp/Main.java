@@ -46,15 +46,15 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		
-    	if(args.length != 1)
+    	/*if(args.length != 1)
         {
             System.out.println("ERROR: Wrong Input\n");
             System.exit(1);
         }
 		
-		String filename = args[0];	
-		//String filename = "data1.xml";
-				
+		String filename = args[0];	*/
+		String filename = "TESTS/star.xml";
+								
 		SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
 		SAXParser saxParser = null;
 		Input inInfo = new Input();
@@ -83,7 +83,7 @@ public class Main {
 	
 			//create the simulation 
 			SimulationColony simulation = new SimulationColony(inInfo.finalinst, inInfo.alpha, inInfo.beta, inInfo.delta, inInfo.eta, inInfo.rho, inInfo.plevel, inInfo.antcolsize, inInfo.nestnode, graph);
-		
+			
 			//verifies the end time condition
 			while(!simulation.verifyEnd()) {
 				simulation.nextStep();	//performs the next event in PEC

@@ -55,13 +55,16 @@ public class UpdateEvaporation{
 			node1 = colony.AntColony[antID].path.get(i);
 			node2 = colony.AntColony[antID].path.get(i+1);
 						
+			if(colony.graph.getPheromone(node1, node2) == 0) {
+				colony.simColony.scheduleEvaporation(node1, node2);
+			}
+			
 			pheroLevel = colony.graph.getPheromone(node1,node2);
 
 			colony.graph.setPheromone(node1, node2, pheroLevel + incVal);
-			colony.simColony.scheduleEvaporation(node1, node2);
+			
 			
 		}
-		
 	}
-		
+	
 }

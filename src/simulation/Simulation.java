@@ -63,15 +63,12 @@ public abstract class Simulation {
 	
 	
 	/**
-	 * Verifies if the current simulation time is higher that the maximum simulation time
+	 * Verifies if the PEC is empty. If true, it means that the simulation is over
 	 * 
 	 * @return True in the end of simulation, false otherwise.
 	 */
 	public boolean verifyEnd() {
 		
-		if(this.currentTime > this.simulationTime) {
-			return true;
-		}
-		return false;
+		return this.pec.isEmpty();
 	}
 }

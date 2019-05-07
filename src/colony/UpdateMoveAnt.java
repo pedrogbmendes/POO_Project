@@ -107,20 +107,16 @@ public class UpdateMoveAnt{
 				notVisitNeighbor.add(neighborID);
 				
 			}
+			
 		}
 	
 		if(c_ij.isEmpty()) {
 			//all neighbors were visited
-			
-			//verifies if the nest node is a neighbor and all the nodes were visited
-			if((ant.path.contains(graph.getNestNode())) && (ant.path.size() == graph.getNumberNodes())) {
-				//if yes, moves to the nest -> hamiltonian cycle complete
-				nextNode = graph.getNestNode();
-			}else {
-				//otherwise choose the new neighbor with a uniform random distribution
-				int randNumberint = rand.nextInt(numberNeighbor);
-				nextNode = graph.getListNeighbor(ant.actualNode).get(randNumberint).targetnode;
-			}
+
+			//choose the new neighbor with a uniform random distribution
+			int randNumberint = rand.nextInt(numberNeighbor);
+			nextNode = graph.getListNeighbor(ant.actualNode).get(randNumberint).targetnode;
+
 		}else {
 			//there are neighbor nodes that were not visit yet
 			Double[] arrayProb = new Double[c_ij.size()];
