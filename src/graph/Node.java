@@ -3,8 +3,11 @@ package graph;
 import java.util.LinkedList;
 import java.util.Iterator;
 
+
 /**
- * Node class that stores, for each node, its list of neighbours in the form of a linkedlist
+ * Class that implements the adjacency list
+ * 
+ * @author Pedro Mendes, Rui Livramento, Francisco Costa
  */
 public class Node {
 	
@@ -12,9 +15,9 @@ public class Node {
 	
 	
 	/**
-	 * Function that prints the list of neighbours of a node
+	 * Function that prints the list of neighbors of a node
 	 * 
-	 * @return [string] String with the neighbours of the node
+	 * @return [string] String with the neighbors of the node
 	 */
 	@Override
 	public String toString() {

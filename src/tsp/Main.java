@@ -19,10 +19,16 @@ import colony.SimulationColony;
  * Project of Object Oriented Programming:<p>
  * Travelling Salesmen Problem by Ant Colony Optimization<p>
  * 
- * @author  Pedro Mendes (81046) - pedrogoncalomendes@tecnico.ulisboa.pt <p>
- * 			Rui Livramento (81051) - rui.livramento@tecnico.ulisboa.pt <p>
- * 			Francisco Costa (81673) - francisco.s.r.m.costa@tecnico.ulisboa.pt <p>
+ * @author  Pedro Mendes (81046)  <p>
+ * 			Rui Livramento (81051) <p>
+ * 			Francisco Costa (81673) <p>
  *
+ * @email 	pedrogoncalomendes@tecnico.ulisboa.pt <p>
+ * 			rui.livramento@tecnico.ulisboa.pt <p>
+ * 			francisco.s.r.m.costa@tecnico.ulisboa.pt <p>
+ * 
+ * 
+ * 
  *  Group 9 <p> <p>
  *  
  *  Second Semester 2018/19 <p>
@@ -40,14 +46,14 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		
-    	/*if(args.length != 1)
+    	if(args.length != 1)
         {
             System.out.println("ERROR: Wrong Input\n");
             System.exit(1);
         }
 		
-		String filename = args[0];*/	
-		String filename = "data1.xml";
+		String filename = args[0];	
+		//String filename = "data1.xml";
 				
 		SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
 		SAXParser saxParser = null;

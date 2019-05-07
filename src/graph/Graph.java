@@ -6,8 +6,13 @@ import java.util.ListIterator;
 
 import colony.GraphInterface;
 
+
 /**
- * Graph class that implements the adjacency list and the respective methods
+ * Class that saves all the information about the graph,
+ * including the number of node, the nest and implements 
+ * the adjacency list and the respective methods.
+ *
+ * @author Pedro Mendes, Rui Livramento, Francisco Costa
  */
 public class Graph implements GraphInterface{
 
@@ -17,7 +22,8 @@ public class Graph implements GraphInterface{
 	public int W;
 	
 	/**
-	 * Constructor function of the class Graph. initializes the number of nodes, the nest node, the array of nodes and the total weight of the graph
+	 * Constructor function of the Graph. Initializes the number of nodes, 
+	 * the nest node, the array of nodes and the total weight of the graph
 	 * 
 	 * @param numberNodes Number of nodes in the graph
 	 * @param nest Identifier of the nest node
@@ -33,11 +39,11 @@ public class Graph implements GraphInterface{
 	
 	
 	/**
-	 * Funtion that sets the pheromone level of an edge between twho nodes to a specific amount
+	 * Function that sets the pheromone level of an edge between two nodes to a specific amount
 	 * 
-	 * @param myId Identifier of the first node
+	 * @param myID Identifier of the first node
 	 * @param neighborID Identifier of the first node's neighbour
-	 * @param phero Amount of pheromone to be added to the edge 
+	 * @param phero Level of pheromone to be set to the edge 
 	 */
 	public void setPheromone(int myID, int neighborID, double phero) {
 		
@@ -109,7 +115,7 @@ public class Graph implements GraphInterface{
 	
 	
 	/**
-	 * Function that returns the total weight of the graph
+	 * Function that returns the sum of weights of the edges of the graph
 	 * 
 	 * @return Total weight of the graph
 	 */
@@ -142,10 +148,10 @@ public class Graph implements GraphInterface{
 	
 	
 	/**
-	 * Function that returns the number of neighbours of a node
+	 * Function that returns the number of neighbors of a node
 	 * 
 	 * @param id Identifier of the node
-	 * @return Number of neighbours of the node
+	 * @return Number of neighbors of the node
 	 */
 	public int numberNeighbor(int id) {
 		return this.arrayNodes[id-1].listNeighbor.size();	
@@ -153,10 +159,10 @@ public class Graph implements GraphInterface{
 	
 	
 	/**
-	 * Function that returns the list of neighbours of a node
+	 * Function that returns the list of neighbors of a node
 	 * 
 	 * @param id Identifier of the node
-	 * @return List of the neighbours of the node 
+	 * @return List of the neighbors of the node 
 	 */
 	public LinkedList<Weight> getListNeighbor(int id) {
 		return this.arrayNodes[id-1].listNeighbor;
@@ -164,11 +170,11 @@ public class Graph implements GraphInterface{
 	
 	
 	/**
-	 * Function that returns the identifier of the ith neighbour of a node
+	 * Function that returns the identifier of the ith neighbor of a node
 	 * 
-	 * @param id identificator of the node
-	 * @param index index of the neighbour in the node's neighbour list
-	 * @return identifier of the neighbour
+	 * @param id identifier of the node
+	 * @param index index of the neighbor in the node's neighbor list
+	 * @return identifier of the neighbor
 	 */
 	public int getNeighborID(int id, int index) {
 		return this.arrayNodes[id-1].listNeighbor.get(index).targetnode;
@@ -186,20 +192,15 @@ public class Graph implements GraphInterface{
 	
 	
 	/**
-	 * Function that returns the identifier of the graph's nestnode
+	 * Function that returns the identifier of the nest
 	 * 
-	 * @return Identifier of the nestnode of the graph
+	 * @return Identifier of the nest node of the graph
 	 */
 	public int getNestNode() {
 		return this.nestnode;
 	}
 	
 	
-	/**
-	 * Function that prints the number of nodes, nestnode and the array of nodes
-	 * 
-	 * @return String with the number of nodes, nestnode and the array of nodes
-	 */
 	@Override
 	public String toString() {
 		return "Graph [nbnodes=" + nbnodes + ", nestnode=" + nestnode + ", arrayNodes=\n" + Arrays.deepToString(arrayNodes)+ "]";

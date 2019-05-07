@@ -5,15 +5,21 @@ import java.util.Random;
 
 
 /**
- * Class which defines how an ant's next move will be determined and calculates ant's next position 
- * @author Rui
- *
+ * Class which handle the movement of the ants in the colony 
+ * 
+ * @author Pedro Mendes, Rui Livramento, Francisco Costa
  */
 public class UpdateMoveAnt{
 
 	private double alpha, beta;
-
 	
+	
+	/**
+	 * Constructor to handle the movement of ants
+	 * 
+	 * @param _alpha Parameter concerning the ant move event w.r.t the pheromone level of an edge
+	 * @param _betaParameter concerning the ant move event w.r.t the weight of an edge
+	 */
 	public UpdateMoveAnt(double _alpha, double _beta) {
 		this.alpha = _alpha;
 		this.beta = _beta;
@@ -21,10 +27,24 @@ public class UpdateMoveAnt{
 	}
 	
 	
+	/**
+	 * Determines the next node where an ant will move and verifies if it's the first time
+	 * or not in this new node.
+	 * 
+	 * If is the first time in the node, it will only update the ant localization and path.
+	 * If is a repeated node, verifies if it's the nest and if all the nodes were traversed. 
+	 * If yes, a Hamiltonian cycle is complete and the ant is updated.
+	 * If the repeated node is not the nest, removes the closed-cycle created in the last move
+	 * and updates the and localization. 
+	 * 
+	 * @param ant Ant's identifier
+	 * @param graph Map(graph) used 
+	 * @return Weight of the edge to be traverse
+	 */
 	int AntMove(Ant ant, GraphInterface graph) {
 		//returns the weight of the edge to traverse
 		
-		int nextNode = calculateNextNode(ant, graph);
+		int nextNode = calculateNextNode(ant, graph); 
 		int weightEdge = graph.getWeight(ant.actualNode, nextNode);
 		
 		//verifies if the ant already pass on the newNode
@@ -34,7 +54,7 @@ public class UpdateMoveAnt{
 				ant.updateAnt(nextNode, weightEdge);;
 				
 			}else {
-				//node is visit again and the Hamiltonian cycle is nor complete
+				//node is visit again and the Hamiltonian cycle is not complete
 				int index = ant.path.indexOf(nextNode);
 				int size = ant.path.size();
 				int last, before;
@@ -56,6 +76,13 @@ public class UpdateMoveAnt{
 	}
 	
 	
+	/**
+	 * Calculates the next node where the ant will move.
+	 * 
+	 * @param ant Ant's identifier
+	 * @param graph Map(graph) used 
+	 * @return Identifier of the next node
+	 */
 	private int calculateNextNode(Ant ant, GraphInterface graph){
 	
 		LinkedList<Double> c_ij = new LinkedList<Double>();
@@ -81,17 +108,22 @@ public class UpdateMoveAnt{
 				
 			}
 		}
-		
+	
 		if(c_ij.isEmpty()) {
 			//all neighbors were visited
-			int randNumberint = rand.nextInt(numberNeighbor);
-			nextNode = graph.getListNeighbor(ant.actualNode).get(randNumberint).targetnode;
 			
-			
+			//verifies if the nest node is a neighbor and all the nodes were visited
+			if((ant.path.contains(graph.getNestNode())) && (ant.path.size() == graph.getNumberNodes())) {
+				//if yes, moves to the nest -> hamiltonian cycle complete
+				nextNode = graph.getNestNode();
+			}else {
+				//otherwise choose the new neighbor with a uniform random distribution
+				int randNumberint = rand.nextInt(numberNeighbor);
+				nextNode = graph.getListNeighbor(ant.actualNode).get(randNumberint).targetnode;
+			}
 		}else {
 			//there are neighbor nodes that were not visit yet
 			Double[] arrayProb = new Double[c_ij.size()];
-			
 					
 			for(Double d : c_ij)
 				c_i += d;
@@ -103,9 +135,8 @@ public class UpdateMoveAnt{
 				for(i = 0; i < size; i++)
 					arrayProb[i] = c_ij.get(i) / c_i;
 	
-				
+	
 				double randNumber = rand.nextDouble();
-				
 				
 				Double[] intervalProb = new Double[c_ij.size()-1];
 				
@@ -121,14 +152,12 @@ public class UpdateMoveAnt{
 							nextNode = notVisitNeighbor.get(i);
 							return nextNode;
 						}
-					}
-					
+					}	
 					nextNode = notVisitNeighbor.get(size-1);
 					
 				}
 			}
 		}
-		
 		return nextNode;	
 	}
 		

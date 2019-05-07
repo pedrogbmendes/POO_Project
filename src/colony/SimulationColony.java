@@ -7,12 +7,11 @@ import simulation.Events;
 import simulation.Simulation;
 
 /**
- * Class which manages the colony simulation
+ * Class which manages the colony simulation. <p>
  * Specifies the use of the simulation defined in {@link simulation.Simulation}.
- * Õutputs the state of the simulation in predetermined time intervals.
  * Creates and schedules new events, manages them and keeps track of the state of the colony.
- * @author Pedro Mendes, Rui Livramento, Francisco Costa
  * 
+ * @author Pedro Mendes, Rui Livramento, Francisco Costa
  */
 public class SimulationColony extends Simulation {
 
@@ -27,16 +26,18 @@ public class SimulationColony extends Simulation {
 	
 	
 	/**
-	 * Creates a simulation of a colony
+	 * Creates a simulation of a colony.
+	 * 
 	 * @param simuTime Maximum time the simulation will run
-	 * @param alpha Normalization parameter !!!
-	 * @param beta Normalization parameter !!!!
-	 * @param delta 
-	 * @param eta 
-	 * @param rho Rate at which each edge will evaporate its pheromones 
-	 * @param plevel Initial level of pheromones on each edge
-	 * @param colonySize The amount of ants that compose the colony
-	 * @param nest Node which corresponds to the initial node of the colony
+	 * @param alpha Parameter concerning the ant move event w.r.t the pheromone level of an edge
+	 * @param beta Parameter concerning the ant move event w.r.t the weight of an edge
+	 * @param delta Parameter concerning the ant move event w.r.t the time to traverse an edge
+	 * @param eta Parameter concerning the pheromone evaporation event w.r.t the time between evaporations 
+	 * @param rho Parameter concerning the pheromone evaporation event w.r.t the rate at which each 
+	 * edge will evaporate the pheromones 
+	 * @param plevel Parameter concerning pheromone level when the Hamiltonian cycle is complete
+	 * @param colonySize Number of ants that compose the colony
+	 * @param nest Identifier of the nest node of the colony
 	 * @param _graph Map where ants can traverse through
 	 */
 	public SimulationColony(double simuTime, double alpha, double beta, double delta, double eta, double rho, double plevel, int colonySize, int nest, GraphInterface _graph) {
@@ -49,23 +50,27 @@ public class SimulationColony extends Simulation {
 		colony = new Colony(this, colonySize, nest, _graph);
 		
 		scheduleObservation();
+		
+		for(int j=0; j< colonySize; j++) {
+			//creates the first event for the ants
+			this.Move(j);
+				
+		} 
 	}
 	
 	/**
-	 * Event adder
-	 * Adds new events to the PEC (Priority Event Container)
+	 * Adds new events to the PEC (Priority Event Container).
+	 * 
 	 * @param e Event which will be added to the PEC
 	 */
 	void addToPec(Events e) {
 		
 		this.pec.add(e);
-		
 	}
 		
 	
 	/**
-	 * Observation event scheduler
-	 * Adds an Observation event to the PEC
+	 * Observation event scheduler. Adds an Observation event to the PEC.
 	 */
 	void scheduleObservation() {
 		this.addToPec(new ObservationState(this.getCurrentTime() + (this.simulationTime/20.0), this));
@@ -73,8 +78,9 @@ public class SimulationColony extends Simulation {
 	
 	
 	/**
-	 * Move Planner
-	 * Calculates and determines the next move for a specific ant. Also checks if a hamiltonian cycle was completed
+	 * Calculates the next move for a specific ant. 
+	 * Also checks if a Hamiltonian cycle was completed and schedule the new move event
+	 * 
 	 * @param antID Ant identifier to act upon
 	 */
 	void Move(int antID) {
@@ -91,21 +97,21 @@ public class SimulationColony extends Simulation {
 	
 	/**
 	 * Move event scheduler
-	 * @param antID
-	 * @param weightEdge
+	 * 
+	 * @param antID Ant's identifier
+	 * @param weightEdge Weight of the edge that the ant will traverse
 	 */
 	private void scheduleMove(int antID, int weightEdge) {
-		//this.addToPec(new MoveAnt(this.getCurrentTime()+1.0, antID, this.colony));
 		this.addToPec(new MoveAnt(this.getCurrentTime()+expRandom(delta*weightEdge), antID, this.colony));
 	
 	}
 
 	
 	/**
-	 * Hamiltonian Cycle verifier
-	 * Verifies if a hamiltonian cycle was achieved
+	 * Verifies if a Hamiltonian cycle was achieved.
+	 * 
 	 * @param antID Ant identifier to act upon
-	 * @return true, if it verifies an hamiltonian cycle / false, otherwise
+	 * @return True, if it verifies an hamiltonian cycle; false, otherwise.
 	 */
 	private boolean verifyHamiltonCycle(int antID) {
 		
@@ -122,9 +128,16 @@ public class SimulationColony extends Simulation {
 	
 	
 	/**
-	 * Hamiltonian Cycle
+	 * Increments the level of pheromones on the path of the ant that completed the
+	 * Hamiltonian cycle. Verifies if there already exist a Hamiltonian cycle.
 	 * 
-	 * @param antID
+	 * If false, the Hamiltonian cycle is saved and the ant is reseted.
+	 * 
+	 * If true, verifies if the new cycle of Hamilton has a smaller weight 
+	 * that the previous one. In affirmative case, the Hamiltonian cycle is 
+	 * saved and the ant is reseted. In negative case, only resets the ant.
+	 * 
+	 * @param antID Ant's identifier
 	 */
 	private void hamiltonionCycle(int antID) {
 
@@ -150,32 +163,29 @@ public class SimulationColony extends Simulation {
 			this.hamiltonWeight = this.colony.AntColony[antID].weightPath;
 		}
 		
-
-			
 		resetAnt(antID);
 		
 	}
 	
 	
 	/**
-	 * Ant path reseter
 	 * Resets the ant's path 
+	 * 
 	 * @param antID Ant identifier to act upon
 	 */
 	private void resetAnt(int antID) {
 		this.colony.AntColony[antID].path.clear();
 		this.colony.AntColony[antID].weightPath = 0;
 		
-		this.colony.AntColony[antID].updateAnt(this.colony.graph.getNestNode(), 0);
-		
+		this.colony.AntColony[antID].updateAnt(this.colony.graph.getNestNode(), 0);	
 	}
 	
 	
 	/**
-	 * Evaporation Event creator
 	 * Updates the pheromone level of a specific edge and schedules the next evaporation
-	 * @param edgeN1 1st node of the specific edge
-	 * @param edgeN2 2nd node of the specific edge
+	 * 
+	 * @param edgeN1 Node to identify the edge
+	 * @param edgeN2 Node to identify the edge
 	 */
 	void Evaporation(int edgeN1, int edgeN2) {
 		
@@ -188,29 +198,33 @@ public class SimulationColony extends Simulation {
 	
 	
 	/**
-	 * Evaporation event scheduler
 	 * Adds a new evaporation event of a specific edge to the PEC
-	 * @param edgeN1 1st node of the specific edge
-	 * @param edgeN2 2nd node of the specific edge
+	 * 
+	 * @param edgeN1 Node to identify the edge
+	 * @param edgeN2 Node to identify the edge
 	 */
 	void scheduleEvaporation(int edgeN1, int edgeN2) {
-		//this.addToPec(new EvaporationEdge(this.getCurrentTime()+1, edgeN1, edgeN2, this.colony));
 		this.addToPec(new EvaporationEdge(this.getCurrentTime()+expRandom(eta), edgeN1, edgeN2, this.colony));
-		
+
 	}
 	
 	
 	/**
-	 * Exponential Distribution
-	 * Determines a random probability using an exponential distribution
+	 * Exponential Distribution function that calculates a random probability using an exponential distribution
+	 * 
 	 * @param m Mean deviation
-	 * @return 
+	 * @return Random value of a exponential distribution 
 	 */
 	double expRandom(double m) {
 		double next = random.nextDouble();
 		return -m*Math.log(1.0-next);
 	}
 
+	
+	/**
+	 * toString function that returns a string with the hamiltonian cycle to be
+	 * printed in the observation
+	 */
 	@Override
 	public String toString() {
 		
@@ -225,9 +239,7 @@ public class SimulationColony extends Simulation {
 			return  listInString + "}";
 		}
 		return "";
-		
-		//int size =  this.hamiltonCycle.toString().length(); 
-		//return "{" + this.hamiltonCycle.toString().substring(1, size-1) + "}";
+	
 	}
 	
 	

@@ -4,9 +4,9 @@ import java.util.LinkedList;
 
 
 /**
- * Class that the position and path of an ant
- * @author pedro
- *
+ * Class Ant that identifies an ant, its path and the weight of its path
+ * 
+ * @author Pedro Mendes, Rui Livramento, Francisco Costa
  */
 public class Ant {
 
@@ -16,7 +16,9 @@ public class Ant {
 	
 	
 	/**
-	 * @param nest Node where the ant starts
+	 * Ant's creation 
+	 * 
+	 * @param nest Nest node
 	 */
 	public Ant(int nest) {
 		this.actualNode = nest;
@@ -26,8 +28,8 @@ public class Ant {
 	}
 	
 	/**
-	 * Ant position updater
-	 * Updates the ant's position and its path
+	 * Function that updates the ant's position and its path
+	 * 
 	 * @param newNode Node to which the ant will move
 	 * @param addWeight Weight associated with the edge the ant will traverse
 	 */
@@ -40,8 +42,10 @@ public class Ant {
 	}
 	
 	/**
-	 * Ant position updater
-	 * @param newNode
+	 * Function that updates the ant's position when a node it's 
+	 * repeated in the ant's path
+	 * 
+	 * @param newNode Node to which the ant will move
 	 */
 	public void updateAnt(int newNode){
 		

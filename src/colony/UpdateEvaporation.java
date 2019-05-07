@@ -1,23 +1,21 @@
 package colony;
 
 
-
-
 /**
- * Class that will handle the evaporation updates on a specific edge
- * @author Rui
- *
+ * Class that will handle the evaporation updates on a specific edge.
+ * 
+ * @author Pedro Mendes, Rui Livramento, Francisco Costa
  */
 public class UpdateEvaporation{
 	
 	private double plevel, rho;
-
-	
 	
 	/**
+	 * Constructor to handle the evaporation events.
 	 * 
-	 * @param plevel pheromone level on the edge
-	 * @param rho rate at which pheromones will evaporate
+	 * @param plevel Parameter concerning pheromone level when the Hamiltonian cycle is complete
+	 * @param rho Parameter concerning the pheromone evaporation event w.r.t 
+	 * the rate at which each edge will evaporate the pheromones 
 	 */
 	public UpdateEvaporation(double plevel, double rho) {
 		this.rho = rho;
@@ -25,12 +23,12 @@ public class UpdateEvaporation{
 	}
 	
 	/**
-	 * Pheromone decrement
-	 * Reduces the amount of pheromones on a specific edge of the graph
-	 * @param graph 
-	 * @param edgeN1 1st node of the specific edge
-	 * @param edgeN2 2nd node of the specific edge
-	 * @return pheromone level on the specified edge
+	 * Decrements the level of pheromones on a specific edge of the graph.
+	 * 
+	 * @param graph Graph
+	 * @param edgeN1 Node to identify an edge
+	 * @param edgeN2 Node to identify an edge
+	 * @return Pheromone level on the specified edge
 	 */
 	double decPheromone(GraphInterface graph, int edgeN1, int edgeN2) {
 		
@@ -41,10 +39,10 @@ public class UpdateEvaporation{
 		
 	
 	/**
-	 * Pheromone increment
-	 * Increases the pheromone level of a specified edge based on an ant's path
-	 * @param colony
-	 * @param antID
+	 * Increments the pheromone level of a specified edge based on an ant's path
+	 * 
+	 * @param colony Object to the colony
+	 * @param antID Ant's identifier
 	 */
 	void incPheromone(Colony colony, int antID) {
 		
@@ -56,21 +54,14 @@ public class UpdateEvaporation{
 		for(int i=0 ; i < colony.AntColony[antID].path.size()-1; i++) {
 			node1 = colony.AntColony[antID].path.get(i);
 			node2 = colony.AntColony[antID].path.get(i+1);
-			
-			if(colony.graph.getPheromone(node1, node2) == 0) {
-				colony.simColony.scheduleEvaporation(node1, node2);
-			}
-			
+						
 			pheroLevel = colony.graph.getPheromone(node1,node2);
 
 			colony.graph.setPheromone(node1, node2, pheroLevel + incVal);
+			colony.simColony.scheduleEvaporation(node1, node2);
+			
 		}
 		
 	}
-	
-	
-	
-
-	
-	
+		
 }
