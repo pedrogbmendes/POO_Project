@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Iterator;
 
 /**
- * TO DO Node class that stores, for each node, its list of neighbours in the form of a linkedlist
+ * Node class that stores, for each node, its list of neighbours in the form of a linkedlist
  */
 public class Node {
 	

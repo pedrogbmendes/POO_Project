@@ -7,7 +7,7 @@ import java.util.ListIterator;
 import colony.GraphInterface;
 
 /**
- * TO DO Graph class that stores the number of nodes, nestnode, list of nodes and weight of the graph and implements all ist methods. 
+ * Graph class that implements the adjacency list and the respective methods
  */
 public class Graph implements GraphInterface{
 

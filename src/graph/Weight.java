@@ -1,7 +1,7 @@
 package graph;
 
 /**
- * Weight Class TO DO
+ * Weight Class that stores the edges and the correspondent weight and pheromone level 
  */
 public class Weight{
 	
