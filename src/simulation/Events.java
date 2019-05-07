@@ -3,7 +3,7 @@ package simulation;
 
 
 /**
- * Abstract Class where is define an event of the simulation (to be added in the PEC)
+ * Abstract Class where an event of the simulation is defined (to be added in the PEC)
  * All the events have the event time attribute in common, and so when the object 
  * of this class is created, the event time is schedule (for the given time).
  * 

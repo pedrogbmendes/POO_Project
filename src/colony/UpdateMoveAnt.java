@@ -4,6 +4,11 @@ import java.util.LinkedList;
 import java.util.Random;
 
 
+/**
+ * Class which defines how an ant's next move will be determined and calculates ant's next position 
+ * @author Rui
+ *
+ */
 public class UpdateMoveAnt{
 
 	private double alpha, beta;

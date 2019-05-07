@@ -1,6 +1,11 @@
 package colony;
 
 
+/**
+ * Class which defines the colony, amount of ants, the map of the place where the colony lives
+ * @author Rui
+ *
+ */
 public class Colony {
 
 	Ant[] AntColony;
@@ -8,6 +13,13 @@ public class Colony {
 	SimulationColony simColony;
 
 	
+	/**
+	 * 
+	 * @param SimCol
+	 * @param colonySize Size of the colony, number of existing ants
+	 * @param nest s
+	 * @param _graph
+	 */
 	public Colony(SimulationColony SimCol, int colonySize, int nest, GraphInterface _graph) {
 		this.simColony = SimCol;
 		this.graph = _graph;

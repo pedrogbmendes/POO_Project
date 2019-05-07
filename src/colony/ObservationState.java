@@ -3,6 +3,11 @@ package colony;
 
 import events.Observation;
 
+/**
+ * Class which defines an observation event and triggers it
+ * @author Rui
+ *
+ */
 public class ObservationState extends Observation{
 
 	SimulationColony simu;
@@ -13,6 +18,11 @@ public class ObservationState extends Observation{
 		
 	}
 	
+	/**
+	 * Trigger Function 
+	 * Triggers a simulation observation, adds to the simulation's total observations counter and prints the number of
+	 * observations, moves, evaporations until then, and the best hamiltonian cycle found yet, if there is one
+	 */
 	protected void WriteObservation() {
 		
 		this.simu.obsCounter ++;

@@ -3,17 +3,35 @@ package colony;
 
 
 
+/**
+ * Class that will handle the evaporation updates on a specific edge
+ * @author Rui
+ *
+ */
 public class UpdateEvaporation{
 	
 	private double plevel, rho;
 
 	
 	
+	/**
+	 * 
+	 * @param plevel pheromone level on the edge
+	 * @param rho rate at which pheromones will evaporate
+	 */
 	public UpdateEvaporation(double plevel, double rho) {
 		this.rho = rho;
 		this.plevel = plevel;
 	}
 	
+	/**
+	 * Pheromone decrement
+	 * Reduces the amount of pheromones on a specific edge of the graph
+	 * @param graph 
+	 * @param edgeN1 1st node of the specific edge
+	 * @param edgeN2 2nd node of the specific edge
+	 * @return pheromone level on the specified edge
+	 */
 	double decPheromone(GraphInterface graph, int edgeN1, int edgeN2) {
 		
 		graph.decrementPheromone(edgeN1, edgeN2, this.rho);
@@ -22,6 +40,12 @@ public class UpdateEvaporation{
 	}
 		
 	
+	/**
+	 * Pheromone increment
+	 * Increases the pheromone level of a specified edge based on an ant's path
+	 * @param colony
+	 * @param antID
+	 */
 	void incPheromone(Colony colony, int antID) {
 		
 		double incVal = (this.plevel * colony.graph.getTotalWeight()) / (colony.AntColony[antID].weightPath);
