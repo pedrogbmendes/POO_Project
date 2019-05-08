@@ -11,10 +11,9 @@
  * <p>
  * The {@link Graph} also implements the methods define in the an interface.
  * 
- * @see simulation.GraphInterface
- * @see Graph
- * @see Node
- * @see Weight
+ * @see graph.Graph
+ * @see graph.Node
+ * @see graph.Weight
  * 
  * 
  * @author Pedro Mendes, Rui Livramento, Francisco Costa

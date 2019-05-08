@@ -61,6 +61,9 @@ public abstract class Events implements Comparable<Events> {
 	        return 0;
 	    }
 	    
+	    /**
+	     * Trigger the event when is the head of the PEC
+	     */
 	    public abstract void TriggerEvent();
 
 }
