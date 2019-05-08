@@ -18,7 +18,7 @@ public class UpdateMoveAnt{
 	 * Constructor to handle the movement of ants
 	 * 
 	 * @param _alpha Parameter concerning the ant move event w.r.t the pheromone level of an edge
-	 * @param _betaParameter concerning the ant move event w.r.t the weight of an edge
+	 * @param _beta Parameter concerning the ant move event w.r.t the weight of an edge
 	 */
 	public UpdateMoveAnt(double _alpha, double _beta) {
 		this.alpha = _alpha;

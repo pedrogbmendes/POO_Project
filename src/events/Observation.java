@@ -13,7 +13,7 @@ public abstract class Observation extends Events{
 	/**
 	 * Sets the time to trigger the observation
 	 * 
-	 * @param time
+	 * @param time Time to trigger the event
 	 */
 	public Observation (double time) {
 		super(time);

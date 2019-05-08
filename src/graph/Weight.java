@@ -18,7 +18,7 @@ public class Weight{
 	 * Identifier (to be possible to identify the edge), 
 	 * the weight of the edge and sets the pheromone level to zero
 	 * 
-	 * @param neigborID Identifier of the neighbor node
+	 * @param neighborID Identifier of the neighbor node
 	 * @param weight Weight of the edge
 	 */
 	public Weight(int neighborID, int weight) {
@@ -91,7 +91,7 @@ public class Weight{
 
 	
 	/**
-	 * Function that prints the target node, the weight and the pheromone level of the edge
+	 * Function that returns in a string the target node, the weight and the pheromone level of the edge
 	 * 
 	 * @return String with the target node, weight and the pheromone level of the edge
 	 */

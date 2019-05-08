@@ -72,7 +72,7 @@ public class Graph implements GraphInterface{
 	/**
 	 * Function that returns the amount of pheromones in the edge between two nodes
 	 * 
-	 * @param myId Identifier of the first node
+	 * @param myID Identifier of the first node
 	 * @param neighborID Identifier of the first node's neighbour
 	 * @return Amount of pheromones in the edge between the two nodes
 	 */
@@ -97,8 +97,8 @@ public class Graph implements GraphInterface{
 	/**
 	 * Function that decrements the amount of pheromones of the edge between to nodes
 	 * 
-	 * @param myID Identifier of the first node
-	 * @param neighborID Identifier of the first node's neighbour
+	 * @param myId Identifier of the first node
+	 * @param neighborId Identifier of the first node's neighbour
 	 * @param dec Amount of pheromones to be decreased in the edge between the two nodes
 	 */
 	public void decrementPheromone(int myId, int neighborId, double dec) {
@@ -201,6 +201,11 @@ public class Graph implements GraphInterface{
 	}
 	
 	
+	/**
+	 * Function that returns in a String the Graph attributes 
+	 * 
+	 * @return String containing the graph attributes
+	 */
 	@Override
 	public String toString() {
 		return "Graph [nbnodes=" + nbnodes + ", nestnode=" + nestnode + ", arrayNodes=\n" + Arrays.deepToString(arrayNodes)+ "]";

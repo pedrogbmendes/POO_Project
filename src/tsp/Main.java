@@ -19,20 +19,16 @@ import colony.SimulationColony;
  * Project of Object Oriented Programming:<p>
  * Travelling Salesmen Problem by Ant Colony Optimization<p>
  * 
- * @author  Pedro Mendes (81046)  <p>
- * 			Rui Livramento (81051) <p>
- * 			Francisco Costa (81673) <p>
+ * @author  Pedro Mendes (81046) - pedrogoncalomendes@tecnico.ulisboa.pt  <p>
+ * 			Rui Livramento (81051) - rui.livramento@tecnico.ulisboa.pt <p>
+ * 			Francisco Costa (81673) - francisco.s.r.m.costa@tecnico.ulisboa.pt <p>
  *
- * @email 	pedrogoncalomendes@tecnico.ulisboa.pt <p>
- * 			rui.livramento@tecnico.ulisboa.pt <p>
- * 			francisco.s.r.m.costa@tecnico.ulisboa.pt <p>
  * 
  * 
- * 
- *  Group 9 <p> <p>
+ *  Group 9 <p>
  *  
  *  Second Semester 2018/19 <p>
- *  MEEC - IST <p>
+ *  MEEC - IST
  *  
  */
 public class Main {

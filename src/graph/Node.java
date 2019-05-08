@@ -15,7 +15,7 @@ public class Node {
 	
 	
 	/**
-	 * Function that prints the list of neighbors of a node
+	 * Function that returns the adjacency list of neighbors of a node
 	 * 
 	 * @return [string] String with the neighbors of the node
 	 */
