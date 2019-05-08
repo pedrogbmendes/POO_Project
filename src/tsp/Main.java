@@ -49,7 +49,7 @@ public class Main {
         }
 		
 		String filename = args[0];	*/
-		String filename = "TESTS/star.xml";
+		String filename = "TESTS/giant_s.xml";
 								
 		SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
 		SAXParser saxParser = null;

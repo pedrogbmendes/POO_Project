@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE simulation SYSTEM "simulation.dtd">
-<simulation finalinst="300.0" antcolsize="10" plevel="0.5">
-    <graph nbnodes="3" nestnode="1">
+<simulation finalinst="10000.0" antcolsize="5000" plevel="0.5">
+    <graph nbnodes="100" nestnode="1">
 
         <node nodeidx="1">
             <weight targetnode="2">5</weight>
@@ -42,7 +42,6 @@
         <node nodeidx="10">
             <weight targetnode="11">1</weight>
         </node>
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         <node nodeidx="11">
             <weight targetnode="12">5</weight>
             <weight targetnode="14">5</weight>
@@ -82,7 +81,6 @@
         <node nodeidx="20">
             <weight targetnode="21">1</weight>
         </node>
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         <node nodeidx="21">
             <weight targetnode="22">5</weight>
             <weight targetnode="24">5</weight>
@@ -122,7 +120,6 @@
         <node nodeidx="30">
             <weight targetnode="31">1</weight>
         </node>
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         <node nodeidx="31">
             <weight targetnode="32">5</weight>
             <weight targetnode="34">5</weight>
@@ -162,7 +159,6 @@
         <node nodeidx="40">
             <weight targetnode="41">1</weight>
         </node>
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         <node nodeidx="41">
             <weight targetnode="42">5</weight>
             <weight targetnode="44">5</weight>
@@ -202,7 +198,6 @@
         <node nodeidx="50">
             <weight targetnode="51">1</weight>
         </node>
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         <node nodeidx="51">
             <weight targetnode="52">5</weight>
             <weight targetnode="54">5</weight>
@@ -242,7 +237,6 @@
         <node nodeidx="60">
             <weight targetnode="61">1</weight>
         </node>
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         <node nodeidx="61">
             <weight targetnode="62">5</weight>
             <weight targetnode="64">5</weight>
@@ -282,7 +276,6 @@
         <node nodeidx="70">
             <weight targetnode="71">1</weight>
         </node>
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         <node nodeidx="71">
             <weight targetnode="72">5</weight>
             <weight targetnode="74">5</weight>
@@ -322,7 +315,6 @@
         <node nodeidx="80">
             <weight targetnode="81">1</weight>
         </node>
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         <node nodeidx="81">
             <weight targetnode="82">5</weight>
             <weight targetnode="84">5</weight>
@@ -362,7 +354,6 @@
         <node nodeidx="90">
             <weight targetnode="91">1</weight>
         </node>
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         <node nodeidx="91">
             <weight targetnode="92">5</weight>
             <weight targetnode="94">5</weight>
@@ -401,7 +392,6 @@
         <node nodeidx="100">
             <weight targetnode="1">10</weight>
         </node>
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     </graph>
     <events>
         <move alpha="1.0" beta="1.0" delta="0.2"/>
