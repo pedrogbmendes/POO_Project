@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT simulation (graph, events)>
+<!ATTLIST simulation comforsens CDATA #REQUIRED
+					 antcolsize CDATA #REQUIRED
+					 plevel CDATA #REQUIRED
+					 finalinst CDATA #REQUIRED>
+<!ELEMENT graph (node*)>
+<!ATTLIST graph nbnodes CDATA #REQUIRED
+		nestnode CDATA #REQUIRED>
+<!ELEMENT node (weight*)>
+<!ATTLIST node nodeidx CDATA #REQUIRED>			  
+<!ELEMENT weight EMPTY>
+<!ATTLIST weight targetnode CDATA #REQUIRED>
+
+<!ELEMENT events (move, evaporation)>
+<!ELEMENT move EMPTY>
+<!ATTLIST move alpha CDATA #REQUIRED
+		beta CDATA #REQUIRED
+		delta CDATA #REQUIRED>
+<!ELEMENT evaporation EMPTY>
+<!ATTLIST evaporation eta CDATA #REQUIRED
+			rho CDATA #REQUIRED>
+
